@@ -1,0 +1,5 @@
+Lorem Ipsum is a standard placeholder text used in design and publishing to visualize layouts without distracting from content.
+What is Lorem Ipsum?
+Lorem Ipsum is dummy text commonly used in graphic design, publishing, and web development to fill spaces where content will eventually appear, allowing designers to focus on layout and typography without distraction from readable text (). Its nonsensical nature simulates the appearance of natural language while remaining meaningless, making it ideal for testing fonts, page layouts, and visual hierarchy (). 
+Wikipedia
+

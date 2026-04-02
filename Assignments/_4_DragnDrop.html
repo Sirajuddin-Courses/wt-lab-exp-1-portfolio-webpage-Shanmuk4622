@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Drag and Drop Demo</title>
+    <style>
+        /* Minimal styling for clarity (optional) */
+        #dropBox {
+            width: 400px;
+            height: 400px;
+            border: 2px dashed black;
+            margin: 20px auto;
+        }
+        .draggable {
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropBox" ondragover="dragOver(event)" ondrop="drop(event)"></div>
+
+    <div>
+        <img src="images/image1.png" class="draggable" id="image1" draggable="true" ondragstart="dragStart(event)">
+        <img src="images/image2.png" class="draggable" id="image2" draggable="true" ondragstart="dragStart(event)">
+        <img src="images/image.png" class="draggable" id="image3" draggable="true" ondragstart="dragStart(event)">
+    </div>
+
+    <script>
+        // Allow drop by preventing default
+        function dragOver(event) {
+            event.preventDefault();
+        }
+
+        // Handle drop
+        function drop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            event.target.appendChild(draggedElement);
+        }
+
+        // Set data on drag start
+        function dragStart(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+    </script>
+</body>
+</html>

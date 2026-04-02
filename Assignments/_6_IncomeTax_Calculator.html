@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+        }
+        .result-item {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Income Tax Calculator</h2>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter Your Name">
+        </div>
+
+        <div class="form-group">
+            <label for="salary">Gross Annual Salary:</label>
+            <input type="number" id="salary" placeholder="Enter your salary">
+        </div>
+
+        <div class="form-group">
+            <label for="deduction">Standard Deduction:</label>
+            <input type="number" id="deduction" value="75000" placeholder="Enter deduction">
+        </div>
+
+        <button onclick="calculateTax()">Calculate Tax</button>
+
+        <div class="result" id="result">
+            <h3>Result:</h3>
+            <div class="result-item">Gross Income: ₹ <span id="grossIncome">0</span></div>
+            <div class="result-item">Standard Deduction: ₹ <span id="standardDeduction">0</span></div>
+            <div class="result-item">Taxable Income: ₹ <span id="taxableIncome">0</span></div>
+            <div class="result-item">Income Tax: ₹ <span id="incomeTax">0</span></div>
+            <div class="result-item">Cess (4%): ₹ <span id="cess">0</span></div>
+            <div class="result-item">Final Tax Payable: ₹ <span id="finalTax">0</span></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            // Get input values
+            const name = document.getElementById('name').value;
+            const grossIncome = parseFloat(document.getElementById('salary').value) || 0;
+            const standardDeduction = parseFloat(document.getElementById('deduction').value) || 0;
+
+            // Calculate taxable income
+            const taxableIncome = grossIncome - standardDeduction;
+            document.getElementById('grossIncome').textContent = grossIncome.toFixed(2);
+            document.getElementById('standardDeduction').textContent = standardDeduction.toFixed(2);
+            document.getElementById('taxableIncome').textContent = taxableIncome.toFixed(2);
+
+            // Calculate income tax based on slabs
+            let incomeTax = 0;
+            if (taxableIncome <= 400000) {
+                incomeTax = 0;
+            } else if (taxableIncome <= 800000) {
+                incomeTax = (taxableIncome - 400000) * 0.05;
+            } else if (taxableIncome <= 1200000) {
+                incomeTax = 20000 + (taxableIncome - 800000) * 0.10;
+            } else if (taxableIncome <= 1600000) {
+                incomeTax = 60000 + (taxableIncome - 1200000) * 0.15;
+            } else if (taxableIncome <= 2000000) {
+                incomeTax = 120000 + (taxableIncome - 1600000) * 0.20;
+            } else if (taxableIncome <= 2400000) {
+                incomeTax = 200000 + (taxableIncome - 2000000) * 0.25;
+            } else {
+                incomeTax = 300000 + (taxableIncome - 2400000) * 0.30;
+            }
+
+            // Calculate cess (4%)
+            const cess = incomeTax * 0.04;
+
+            // Calculate final tax
+            const finalTax = incomeTax + cess;
+
+            // Display results
+            document.getElementById('incomeTax').textContent = incomeTax.toFixed(2);
+            document.getElementById('cess').textContent = cess.toFixed(2);
+            document.getElementById('finalTax').textContent = finalTax.toFixed(2);
+        }
+    </script>
+</body>
+</html>

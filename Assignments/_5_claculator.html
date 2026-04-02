@@ -1,0 +1,90 @@
+<!DOCTYPE>
+<html>
+    <head>
+
+        <style>
+            .outerBox{
+                display: grid;
+                border: 1px solid black;
+                padding: 10px;
+                background-color: rgb(161, 144, 144);
+                width: 320px;
+            }
+            .row{
+                display: flex;
+            }
+            .ele{
+                display: flex;
+                height: 50px;
+                width: 50px;
+                background-color: rgb(200, 200, 236);
+                margin: 5px;
+                justify-content: center;
+                text-align: center;
+                padding: 10px;
+            }
+            .display{
+                width: 350px;
+                height: 50px;
+                background-color: rgb(179, 238, 233);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="display" id="display">
+
+        </div>
+        <div class="outerBox">
+            <div class="row">
+                <div class="ele" id="_1">(</div>
+                <div class="ele" id="_2">CE</div>
+                <div class="ele" id="_3">)</div>
+                <div class="ele" id="_4">C</div>
+            </div>
+            <div class="row">
+                <div class="ele" id="_5">1</div>
+                <div class="ele" id="_6">2</div>
+                <div class="ele" id="_7">3</div>
+                <div class="ele" id="_8">+</div>
+            </div>
+            <div class="row">
+                <div class="ele" id="_9">4</div>
+                <div class="ele" id="_10">5</div>
+                <div class="ele" id="_11">6</div>
+                <div class="ele" id="_12">-</div>
+            </div>
+            <div class="row">
+                <div class="ele" id="_13">7</div>
+                <div class="ele" id="_14">8</div>
+                <div class="ele" id="_15">9</div>
+                <div class="ele" id="_16">*</div>
+            </div>
+            <div class="row">
+                <div class="ele" id="_17">.</div>
+                <div class="ele" id="_18">0</div>
+                <div class="ele" id="_19">=</div>
+                <div class="ele" id="_20">/</div>
+            </div>
+        </div>
+    </body>
+    <script>
+        const display = document.getElementById("display");
+        const buttons = document.querySelectorAll(".ele");
+        
+        buttons.forEach(button => {
+            button.addEventListener( "click",() =>{
+                const value = button.textContent;
+                // display.textContent = value;
+                console.log(value);
+                if(value=="C"){
+                    display.textContent = "";
+                }else if(value=="="){
+                    display.textContent = eval(display.textContent);
+                }else{
+                    display.textContent += value;
+                }
+            })
+        })
+    </script>
+</html>

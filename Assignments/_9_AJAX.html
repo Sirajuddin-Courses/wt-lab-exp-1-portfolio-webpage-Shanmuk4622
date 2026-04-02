@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title> 
+
+</head>
+<body>
+    <div id="demo">
+        <h2>AJAX</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+    <div id="demo2">
+            <h2>AJAX</h2>
+            <button type="button" onclick="loadDoc2()">Change Content</button>
+    </div>
+    
+    <script>
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("demo").innerHTML =
+                this.responseText;
+            }
+            xhttp.open("GET", "AJAX_info.txt");
+            xhttp.send();
+        }
+
+        function loadDoc2() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("demo2").innerHTML =
+                this.responseText;
+            }
+            xhttp.open("GET", "AJAX_info.txt");
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
